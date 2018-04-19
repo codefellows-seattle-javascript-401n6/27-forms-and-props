@@ -5,28 +5,49 @@ class SearchForm extends React.Component {
     super(props);
     this.state = {
       userBoardInput: '',
+      userMaxInput: 0,
     }
     this.formSubmit = this.formSubmit.bind(this);
     this.updateBoardValue = this.updateBoardValue.bind(this);
+    this.updateMaxValue = this.updateMaxValue.bind(this);
   }
 
   updateBoardValue(event) {
-    let input = ev.target.value;
+    let input = event.target.value;
     this.setState({userBoardInput: input});
+  }
+
+  updateMaxValue(event) {
+    let input = parseInt(event.target.value);
+    this.setState({userMaxInput: input});
   }
 
   formSubmit(event) {
     event.preventDefault();
-    this.props.submitFunc(this.state.userBoardInput);
+    this.props.submitFunc({
+      rboard: this.state.userBoardInput,
+      rlimit: this.state.userMaxInput,
+    });
   }
 
   render() {
     return <div>
       <form onSubmit={this.formSubmit}>
         r/ 
-        <input type="text"  value={this.state.rboard} onChange={this.updateBoardValue} placeholder="reddit board"/>
+        <input 
+          type="text"  
+          value={this.state.rboard} 
+          onChange={this.updateBoardValue} 
+          placeholder="reddit board"
+        />
         max: 
-        <input type="number" name="rlimit" placeholder="number of results 1-100" min="1" max="100" />
+        <input 
+          type="number" 
+          value={this.state.userMaxInput} 
+          onChange={this.updateMaxValue} 
+          placeholder="number of results 1-100"
+          min="1" max="100" 
+        />
         <input type="submit" value="Submit" />
       </form>
     </div>

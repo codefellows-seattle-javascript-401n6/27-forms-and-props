@@ -9,9 +9,9 @@ class App extends React.Component {
     super(props);
     this.state = {
       title: 'Search Reddit Subreddit Search Engine',
+      topics: [],
       rboard: '',
-      rlimit: 0,
-      topics: ['sample1', 'sample2'],
+      rlimit: 0
     }
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -19,13 +19,35 @@ class App extends React.Component {
 
   handleSubmit(query) {
     console.log('query in app handle submit', query);
+    this.setState({
+      rboard: query.rboard,
+      rlimit: query.rlimit
+    });
+    let url = 'https://www.reddit.com/r/' + query.rboard + '.json?limit=' + query.rlimit;
+    console.log('fetch url', url);
+    fetch(url)
+    .then(response => {
+      return response.json();
+    })
+    .then(json => {
+      let content = json.data.children;
+      console.log('new content', content);
+      content.forEach(topic => {
+        this.state.topics.push(topic);
+      });
+      this.state.forceUpdate();
+      console.log('last state', this.state);
+    })
+    .catch(() => {
+      this.setState({topics: []});
+    });
   }
 
   render() {
     return <div>
       <h1>{this.state.title}</h1>
       <SearchForm submitFunc={this.handleSubmit} />
-      <SearchResultList topics={this.state.topics}/>
+      <SearchResultList topics={this.state.topics} />
     </div>
   }
 }

@@ -9,7 +9,7 @@ class SearchResultList extends React.Component {
 
   displayResults() {
     return this.props.topics.map((result, i) => {
-      return <li key={i}>{result}</li>
+      return <li key={i}>{result.date.title}</li>
     });
   }
 
@@ -17,7 +17,7 @@ class SearchResultList extends React.Component {
     return <div>
       <h2>Your results: {this.props.topics.length}</h2>
       <ul>
-        {this.displayResults}
+        {this.displayResults()}
       </ul>
     </div>
   }
