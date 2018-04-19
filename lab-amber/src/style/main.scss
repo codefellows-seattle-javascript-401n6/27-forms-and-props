@@ -1,0 +1,9 @@
+$error-color: red;
+
+form {
+  .error {
+    input {
+      border-color: $error-color;
+    }
+  }
+}

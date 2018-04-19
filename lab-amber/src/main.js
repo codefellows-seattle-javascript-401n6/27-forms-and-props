@@ -4,6 +4,8 @@ import ReactDOM from 'react-dom';
 import SearchForm from './components/search-form.js';
 import SearchResultList from './components/search-results-list.js';
 
+import './style/main.scss';
+
 class App extends React.Component {
   constructor(props) {
     super(props);
