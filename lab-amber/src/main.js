@@ -31,11 +31,13 @@ class App extends React.Component {
     })
     .then(json => {
       let content = json.data.children;
+      let contentArr = [];
       console.log('new content', content);
       content.forEach(topic => {
-        this.state.topics.push(topic);
+        contentArr.push(topic);
       });
-      this.state.forceUpdate();
+      this.setState({topics: contentArr});
+      // this.state.forceUpdate();
       console.log('last state', this.state);
     })
     .catch(() => {
