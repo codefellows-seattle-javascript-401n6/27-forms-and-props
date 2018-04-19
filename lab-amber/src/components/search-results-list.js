@@ -9,7 +9,12 @@ class SearchResultList extends React.Component {
 
   displayResults() {
     return this.props.topics.map((result, i) => {
-      return <li key={i}>{result.date.title}</li>
+      return <li key={i}>
+      <a href={result.data.url}>
+      <p>{result.data.ups}</p>
+      {result.data.title}
+      </a>
+      </li>
     });
   }
 

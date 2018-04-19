@@ -18,13 +18,7 @@ class App extends React.Component {
   }
 
   handleSubmit(query) {
-    console.log('query in app handle submit', query);
-    this.setState({
-      rboard: query.rboard,
-      rlimit: query.rlimit
-    });
     let url = 'https://www.reddit.com/r/' + query.rboard + '.json?limit=' + query.rlimit;
-    console.log('fetch url', url);
     fetch(url)
     .then(response => {
       return response.json();
@@ -32,15 +26,20 @@ class App extends React.Component {
     .then(json => {
       let content = json.data.children;
       let contentArr = [];
-      console.log('new content', content);
       content.forEach(topic => {
         contentArr.push(topic);
       });
-      this.setState({topics: contentArr});
-      // this.state.forceUpdate();
-      console.log('last state', this.state);
+      return contentArr;
+    })
+    .then(arr => {
+      this.setState({
+        topics: arr,
+        rboard: query.rboard,
+        rlimit: query.rlimit
+      });
     })
     .catch(() => {
+      console.log('no results available');
       this.setState({topics: []});
     });
   }
