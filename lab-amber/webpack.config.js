@@ -13,7 +13,7 @@ const config = {
         test: /\.js$/, loader: "babel-loader"
       },
       {
-        test: /\.scss$/,
+        test: /\.css$/,
         loader: ['style-loader', 'css-loader']
       },
     ]

@@ -5,7 +5,7 @@ class SearchForm extends React.Component {
     super(props);
     this.state = {
       userBoardInput: '',
-      userMaxInput: 0,
+      userMaxInput: '',
     }
     this.formSubmit = this.formSubmit.bind(this);
     this.updateBoardValue = this.updateBoardValue.bind(this);
@@ -31,8 +31,7 @@ class SearchForm extends React.Component {
   }
 
   render() {
-    return <div>
-      <form onSubmit={this.formSubmit}>
+    return <form onSubmit={this.formSubmit} className={this.props.errorDisplay}>
         r/ 
         <input 
           type="text"  
@@ -50,7 +49,6 @@ class SearchForm extends React.Component {
         />
         <input type="submit" value="Submit" />
       </form>
-    </div>
   }
 }
 
