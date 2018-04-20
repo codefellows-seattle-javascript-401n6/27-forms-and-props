@@ -3,9 +3,6 @@ import React from 'react';
 class SearchResultList extends React.Component {
   constructor(props) {
     super(props);
-    // this.state = {
-    //   count: 0
-    // };
 
     // this.onChange = this.onChange.bind(this);
     // this.onSubmit = this.onSubmit.bind(this);
@@ -48,14 +45,19 @@ class SearchResultList extends React.Component {
   }
 
   render() {
-    return
-    <div>
-      {/* {this.phrases()} */}
-      <p>Found {this.props.results.length} Movies</p>
-      <ul>
-        {this.listMovies()}
-      </ul>
-    </div>
+    if (!this.props.hasSearched) {
+      return <div/>
+    } else if (this.props.isLoading) {
+      return <p> Loading...</p>
+    } else {
+      return <div>
+        {/* {this.phrases()} */}
+        <p>Found {this.props.results.length} Movies</p>
+        <ul>
+          {this.listMovies()}
+        </ul>
+      </div>
+    }
   }
 }
 

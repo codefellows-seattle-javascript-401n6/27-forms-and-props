@@ -12,7 +12,9 @@ class App extends React.Component {
     super(props)
     this.state = {
       title: 'Reddit Search',
-      results: ['Rushmore', 'Royal Tenenbaums']
+      results: ['Rushmore', 'Royal Tenenbaums'],
+      hasSearched: false,
+      loading: false
     };
 
     this.performSearch = this.performSearch.bind(this);
@@ -25,13 +27,16 @@ class App extends React.Component {
       isLoading: true
     })
 
-    if(query === 'ttt') {
-      this.setState({results: ["Kill Bill", "Kill Bill 2"]});
-      this.setState({isLoading: false});
-    } else {
-      this.setState({results: []});
-      this.setState({isLoading: false});
-    }
+    var that = this;
+    setTimeout(() => {
+      if(query === 'ttt') {
+        this.setState({results: ["Kill Bill", "Kill Bill 2"]});
+        this.setState({isLoading: false});
+      } else {
+        this.setState({results: []});
+        this.setState({isLoading: false});
+      }
+    }, 800);
   }
 
   render() {
@@ -40,7 +45,7 @@ class App extends React.Component {
         {/* <UserInputForm /> */}
         <SearchForm search={this.performSearch}/>
         {/* submit={this.handleSubmit} */}
-        <SearchResultList results={this.state.results} />
+        <SearchResultList results={this.state.results} hasSearched={this.state.hasSearched} isLoading={this.state.isLoading} />
       </div>
   }
 
