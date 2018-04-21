@@ -11,8 +11,8 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      title: 'Redit Search',
-      results: ['No Results',]
+      header: 'Redit Search',
+      results: []
     }
     this.performSearch = this.performSearch.bind(this);
   }
@@ -20,7 +20,7 @@ class App extends React.Component {
   performSearch(query) {
     let searchFormBoard = query;
     let searchFormLimit = 10;
-    console.log(`http://www.reddit.com/r/${searchFormBoard}.json?limit=${searchFormLimit}`);
+    // console.log(`http://www.reddit.com/r/${searchFormBoard}.json?limit=${searchFormLimit}`);
 
     fetch(`http://www.reddit.com/r/${searchFormBoard}.json?limit=${searchFormLimit}`)
       .then(
@@ -33,10 +33,10 @@ class App extends React.Component {
 
           // Examine the text in the response
           response.json().then( (data) => {
-            console.log(data);
-            let title = data.data.children[0].data.title
-            let url = data.data.children[0].data.url
-            this.setState({ results: [{title: title, url: url}] });
+            // console.log(data);
+            
+            console.log('data: ', data.data.children)
+            this.setState({ results: data.data.children });
           });
         }
       )
@@ -58,9 +58,9 @@ class App extends React.Component {
 
   render() {
     return <div>
-      <h1>{this.state.title}</h1>
+      <h1>{this.state.header}</h1>
       <SearchForm search={this.performSearch} />
-      <SearchResults title={this.state.title} results={this.state.results} />
+      <SearchResults results={this.state.results} />
     </div>
   }
 }

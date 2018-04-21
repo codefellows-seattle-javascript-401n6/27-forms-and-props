@@ -20,8 +20,8 @@ class SearchForm extends React.Component {
 
   handleSubmit(ev) {
     ev.preventDefault();
-    console.log(ev.target.search.value);
-    console.log(this.props.search);
+    // console.log(ev.target.search.value);
+    // console.log(this.props.search);
     this.props.search(ev.target.search.value);
   }
 

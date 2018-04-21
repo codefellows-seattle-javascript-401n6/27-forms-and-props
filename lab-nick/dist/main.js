@@ -19143,8 +19143,8 @@ var SearchForm = function (_React$Component) {
     key: 'handleSubmit',
     value: function handleSubmit(ev) {
       ev.preventDefault();
-      console.log(ev.target.search.value);
-      console.log(this.props.search);
+      // console.log(ev.target.search.value);
+      // console.log(this.props.search);
       this.props.search(ev.target.search.value);
     }
   }, {
@@ -19214,7 +19214,13 @@ var SearchResults = function (_React$Component) {
         return _react2.default.createElement(
           'li',
           { key: i },
-          result.title + ', ' + result.url
+          result.data.title + ', ',
+          _react2.default.createElement('br', null),
+          _react2.default.createElement(
+            'a',
+            { href: '' + result.data.url },
+            '' + result.data.url
+          )
         );
       });
     }
@@ -19296,8 +19302,8 @@ var App = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
 
     _this.state = {
-      title: 'Redit Search',
-      results: ['No Results']
+      header: 'Redit Search',
+      results: []
     };
     _this.performSearch = _this.performSearch.bind(_this);
     return _this;
@@ -19310,7 +19316,7 @@ var App = function (_React$Component) {
 
       var searchFormBoard = query;
       var searchFormLimit = 10;
-      console.log('http://www.reddit.com/r/' + searchFormBoard + '.json?limit=' + searchFormLimit);
+      // console.log(`http://www.reddit.com/r/${searchFormBoard}.json?limit=${searchFormLimit}`);
 
       fetch('http://www.reddit.com/r/' + searchFormBoard + '.json?limit=' + searchFormLimit).then(function (response) {
         if (response.status !== 200) {
@@ -19320,10 +19326,10 @@ var App = function (_React$Component) {
 
         // Examine the text in the response
         response.json().then(function (data) {
-          console.log(data);
-          var title = data.data.children[0].data.title;
-          var url = data.data.children[0].data.url;
-          _this2.setState({ results: [{ title: title, url: url }] });
+          // console.log(data);
+
+          console.log('data: ', data.data.children);
+          _this2.setState({ results: data.data.children });
         });
       }).catch(function (err) {
         console.log('Fetch Error :-S', err);
@@ -19349,10 +19355,10 @@ var App = function (_React$Component) {
         _react2.default.createElement(
           'h1',
           null,
-          this.state.title
+          this.state.header
         ),
         _react2.default.createElement(_searchForm2.default, { search: this.performSearch }),
-        _react2.default.createElement(_searchResults2.default, { title: this.state.title, results: this.state.results })
+        _react2.default.createElement(_searchResults2.default, { results: this.state.results })
       );
     }
   }]);

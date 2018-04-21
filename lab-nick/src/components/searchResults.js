@@ -11,7 +11,10 @@ class SearchResults extends React.Component {
   listResults() {
     console.log('results:', this.props.results)
     return this.props.results.map((result, i) => {
-     return <li key={i}>{`${result.title}, ${result.url}`}</li>
+     return <li key={i}>
+      {`${result.data.title}, `}
+      <br/><a href={`${result.data.url}`}>{`${result.data.url}`}</a>
+     </li>
     });
   }
 
