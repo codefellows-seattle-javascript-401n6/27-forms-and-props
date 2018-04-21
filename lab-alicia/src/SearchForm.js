@@ -5,7 +5,8 @@ class SearchForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      userInput: ''
+      userInput: '',
+      limit: 100
     }
     this.updateInput = this.updateInput.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -13,24 +14,20 @@ class SearchForm extends React.Component {
 
   updateInput(ev) {
     let input = ev.target.value;
-    this.setState({userInput: input});
+    this.setState({[ev.target.name]: input});
   }
 
   handleSubmit(ev) {
     ev.preventDefault();
-    console.log(ev.state.userInput);
-
-    this.props.search(this.state)
+    this.props.submit(this.state);
   }
 
 render() {
-  return <div>
-    <form onSubmit={this.handleSubmit}>
-      {/* <input type='text' placeholder='search' value={this.state.query} onChange={this.onChange}> */}
-      <input type='text' placeholder='search' value={this.state.userInput} onChange={this.updateInput} />
-      <button>Search</button>
+  return <form className={this.props.error} onSubmit={this.handleSubmit}>
+      <input type='text' placeholder='userInput' value={this.state.userInput} onChange={this.updateInput} />
+      <input type="number" name="limit" value={this.state.limit} min="0" max="100" onChange={this.updateInput} />
+      <button type="submit" value="Search" />
     </form>
-  </div>
   }
 }
 
