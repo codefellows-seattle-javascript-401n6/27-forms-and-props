@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import SearchForm from './components/search-form.js';
 import SearchResults from './components/search-results.js'
 
-// import './style/main.css';
+import './style/main.css';
 
 class App extends React.Component {
     constructor(props) {
@@ -11,6 +11,7 @@ class App extends React.Component {
         this.state = {
             title: 'Search',
             topics: [],
+            formClass: 'good'
         }
         this.runSearch = this.runSearch.bind(this);
     }
@@ -26,14 +27,18 @@ class App extends React.Component {
         })
         .catch(err => {
             console.log('no results', err);
+            this.state({
+                topics: [],
+                formClass: 'error'
             });
-    };
+        });
+    }
     
 
     render() {
         return <div>
             <h1>{this.state.title}</h1>
-            <SearchForm search={this.runSearch} />
+            <SearchForm search={this.runSearch} errorDisplay={this.state.formClass}/>
             <SearchResults topics={this.state.topics}/>
             </div>
     }
