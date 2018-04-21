@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import SearchForm from './search-form.js';
+import SearchForm from './components/search-form.js';
+import SearchResultList from './components/search-results-list.js'
 
 import './style/main.css';
 
@@ -18,8 +19,26 @@ class App extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    handleSubmit() {
-
+    handleSubmit(query) {
+        let url = 'https://reddit.com/r/' + query.rboard + '.json?limit=' + query.rlimit;
+        fetch(url)
+        .then(response => {
+            return response.json();
+        })
+        .then(json => {
+            let content = json.data.children;
+            contentArr = [];
+            content.forEach(topic => {
+                contentArr.push(topic);
+            });
+        })
+        .catch(() => {
+            console.log('no results');
+            this.setState({
+                topics: [],
+                formClass: 'error'
+            });
+        });
     }
 
     render() {

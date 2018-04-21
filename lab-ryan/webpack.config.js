@@ -3,7 +3,7 @@ const path = require('path');
 const config = {
     mode: 'development',
     devtool: 'source-map',
-    entry: '.src/main.js',
+    entry: './src/main.js',
     output: {
         path: path.resolve(__dirname, './dist'),
         filename: 'bundle.js'
