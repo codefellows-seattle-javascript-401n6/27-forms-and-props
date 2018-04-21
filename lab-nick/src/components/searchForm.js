@@ -15,7 +15,7 @@ class SearchForm extends React.Component {
 
   updateInput(ev) {
     let input = ev.target.value;
-    this.setState({userInput: input});
+    this.setState({ userInput: input });
   }
 
   handleSubmit(ev) {
@@ -28,9 +28,16 @@ class SearchForm extends React.Component {
   render() {
     console.log('Search form loaded...');
     return <form onSubmit={this.handleSubmit}>
+      <select id="numb-results" name="numb-results">
+        <option value="10">10 Results</option>
+        <option value="25">25 Results</option>
+        <option value="50">50 Results</option>
+        <option value="75">75 Results</option>
+        <option value="100">100 Results</option>
+      </select>
       <input type="text" onChange={this.updateInput} name='search' value={this.state.userInput} placeholder="search for a subject" />
       <button>Search</button>
-      
+
     </form>
   }
 }
