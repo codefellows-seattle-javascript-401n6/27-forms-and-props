@@ -8,10 +8,10 @@ class SearchResults extends React.Component {
     super(props);
   }
 
-  listMovies() {
+  listResults() {
     console.log('results:', this.props.results)
     return this.props.results.map((result, i) => {
-     return <li key={i}>{result}</li>
+     return <li key={i}>{`${result.title}, ${result.url}`}</li>
     });
   }
 
@@ -19,9 +19,9 @@ class SearchResults extends React.Component {
     console.log('Search results loaded...');
     console.log(this.props);
     return <div>
-      <p>Found {this.props.results.length} Movies</p>
+      <p>Found {this.props.results.length} Result(s)</p>
     <ul>
-      {this.listMovies()}
+      {this.listResults()}
     </ul>
     </div>
   }

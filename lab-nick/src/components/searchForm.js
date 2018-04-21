@@ -18,15 +18,17 @@ class SearchForm extends React.Component {
     this.setState({userInput: input});
   }
 
-  handleSubmit() {
+  handleSubmit(ev) {
     ev.preventDefault();
-    console.log(ev.target.value);
+    console.log(ev.target.search.value);
+    console.log(this.props.search);
+    this.props.search(ev.target.search.value);
   }
 
   render() {
     console.log('Search form loaded...');
     return <form onSubmit={this.handleSubmit}>
-      <input type="text" onChange={this.updateInput} value={this.state.userInput} placeholder="search for a movie " />
+      <input type="text" onChange={this.updateInput} name='search' value={this.state.userInput} placeholder="search for a subject" />
       <button>Search</button>
       
     </form>
