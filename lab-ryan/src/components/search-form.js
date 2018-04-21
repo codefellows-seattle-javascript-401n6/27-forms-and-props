@@ -4,54 +4,46 @@ class SearchForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            userBoardInput: '',
-            userMaxInput: '',
+            userInput: '',
+            userLimit: null,
         }
-        this.formSubmit = this.formSubmit.bind(this);
-        this.updateBoardValue = this.updateBoardValue.bind(this);
-        this.updateMaxValue = this.updateMaxValue.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+        // this.updateInput = this.updateInput.bind(this);
+        // this.updateValue = this.updateValue.bind(this);
     }
 
-    updateBoardValue(event) {
-        let input = event.target.value;
-        this.setState({
-            userBoardInput: input
-        });
-    }
+    // updateInput(event) {
+    //     let input = event.target.value;
+    //     this.setState({
+    //         userInput: input
+    //     });
+    // }
 
-    updateMaxValue(event) {
-        let input = parsInt(event.target.value);
-        this.setState({
-            userMaxInput: input
-        });
-    }
+    // updateValue(event) {
+    //     let input = parsInt(event.target.value);
+    //     this.setState({
+    //         userMaxInput: input
+    //     });
+    // }
 
-    formSubmit(event) {
+    handleSubmit(event) {
         event.preventDefault();
-        this.props.submitFunction({
-            rboard: this.state.userBoardInput,
-            rlimit: this.state.userMaxInput,
-        });
+        this.props.search(event.target.serch.value, event.target.limit.value);
     }
 
-    render() {
-                
-    return <form onSubmit={this.formSubmit} className={this.props.errorDisplay}>
-    r/
+    render() {           
+    return <form onSubmit={this.handleSubmit}>
     <input
          type="text"
-         value={this.state.rboard}
-         onChange={this.updateBoardValue}
+         name="search"
          placeholder="reddit board"
      />
-     max:
      <input
          type="number"
-         value={this.state.userMaxInput}
-         onChange={this.updateMaxValue}
-         placeholder="number of results from 1 to 100"
-         minimum="1" maximum="100"
- 
+         name="limit"
+         minimum="1" 
+         maximum="100"
+         placeholder="from 1 to 100"
      />
      <input type="submit" value="Submit" />
      </form>

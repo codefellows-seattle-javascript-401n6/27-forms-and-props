@@ -1,10 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
 import SearchForm from './components/search-form.js';
-import SearchResultList from './components/search-results-list.js'
+import SearchResults from './components/search-results.js'
 
-import './style/main.css';
+// import './style/main.css';
 
 class App extends React.Component {
     constructor(props) {
@@ -12,40 +11,30 @@ class App extends React.Component {
         this.state = {
             title: 'Search',
             topics: [],
-            rboard: '',
-            rlimit: '',
-            formClass: 'good'
         }
-        this.handleSubmit = this.handleSubmit.bind(this);
+        this.runSearch = this.runSearch.bind(this);
     }
 
-    handleSubmit(query) {
-        let url = 'https://reddit.com/r/' + query.rboard + '.json?limit=' + query.rlimit;
+    runSearch(query, limit) {
+        let url = `https://reddit.com/r/${query}.json?limit=${limit}`;
         fetch(url)
-        .then(response => {
-            return response.json();
+        .then(results => {
+            return results.json();
         })
-        .then(json => {
-            let content = json.data.children;
-            contentArr = [];
-            content.forEach(topic => {
-                contentArr.push(topic);
-            });
+        .then(results => {
+            this.setState({topics: results.data.children})
         })
-        .catch(() => {
-            console.log('no results');
-            this.setState({
-                topics: [],
-                formClass: 'error'
+        .catch(err => {
+            console.log('no results', err);
             });
-        });
-    }
+    };
+    
 
     render() {
         return <div>
             <h1>{this.state.title}</h1>
-            <SearchForm submitFunction={this.handleSubmit} errorDisplay={this.state.formClass} />
-            <SearchResultList topics={this.state.topics} />
+            <SearchForm search={this.runSearch} />
+            <SearchResults topics={this.state.topics}/>
             </div>
     }
 }
