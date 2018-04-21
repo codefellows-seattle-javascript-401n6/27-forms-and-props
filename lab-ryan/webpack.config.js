@@ -2,6 +2,7 @@ const path = require('path');
 
 const config = {
     mode: 'development',
+    devtool: 'source-map',
     entry: '.src/main.js',
     output: {
         path: path.resolve(__dirname, './dist'),
@@ -11,7 +12,8 @@ const config = {
         rules: [
             {
             test: /\.js$/, 
-            loader: 'babel-loader'
+            loader: 'babel-loader',
+            exclude: /node_modules/,
             },
             {
             test: /\.css$/,
