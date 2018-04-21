@@ -16,7 +16,7 @@ class App extends React.Component {
     }
 
     runSearch(query, limit) {
-        let url = `https://reddit.com/r/${query}.json?limit=${limit}`;
+        let url = `https://www.reddit.com/r/${query}.json?limit=${limit}`;
         fetch(url)
         .then(results => {
             return results.json();

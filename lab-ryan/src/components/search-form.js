@@ -28,7 +28,7 @@ class SearchForm extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        this.props.search(event.target.serch.value, event.target.limit.value);
+        this.props.search(event.target.search.value, event.target.limit.value);
     }
 
     render() {           

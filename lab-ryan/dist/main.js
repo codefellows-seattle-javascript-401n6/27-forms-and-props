@@ -19151,7 +19151,7 @@ var SearchForm = function (_React$Component) {
         key: 'handleSubmit',
         value: function handleSubmit(event) {
             event.preventDefault();
-            this.props.search(event.target.serch.value, event.target.limit.value);
+            this.props.search(event.target.search.value, event.target.limit.value);
         }
     }, {
         key: 'render',
@@ -19319,7 +19319,7 @@ var App = function (_React$Component) {
         value: function runSearch(query, limit) {
             var _this2 = this;
 
-            var url = 'https://reddit.com/r/' + query + '.json?limit=' + limit;
+            var url = 'https://www.reddit.com/r/' + query + '.json?limit=' + limit;
             fetch(url).then(function (results) {
                 return results.json();
             }).then(function (results) {
