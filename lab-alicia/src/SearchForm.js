@@ -14,7 +14,7 @@ class SearchForm extends React.Component {
 
   updateInput(ev) {
     let input = ev.target.value;
-    this.setState({[ev.target.name]: input});
+    this.setState({userInput: input});
   }
 
   handleSubmit(ev) {
@@ -22,11 +22,24 @@ class SearchForm extends React.Component {
     this.props.submit(this.state);
   }
 
+  error() {
+    if (this.props.error) {
+      return "myerror";
+    } else {
+      return "";
+    }
+  }
+
 render() {
-  return <form className={this.props.error} onSubmit={this.handleSubmit}>
-      <input type='text' placeholder='userInput' value={this.state.userInput} onChange={this.updateInput} />
-      <input type="number" name="limit" value={this.state.limit} min="0" max="100" onChange={this.updateInput} />
-      <button type="submit" value="Search" />
+  return <form className={this.error()} onSubmit={this.handleSubmit}>
+      <input type='text' placeholder='userInput' 
+      value={this.state.userInput} 
+      onChange={this.updateInput} />
+      <input type="number" name="limit" 
+      value={this.state.limit} 
+      min="0" max="100" 
+      onChange={this.updateInput} />
+      <button type="submit">Search</button>
     </form>
   }
 }

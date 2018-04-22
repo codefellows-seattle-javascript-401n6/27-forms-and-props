@@ -55,7 +55,7 @@ class SearchResultList extends React.Component {
         {/* <p>Found {this.props.results.length} Movies</p> */}
         <ul>
           {/* {this.listMovies()} */}
-          {this.props.result}
+          {this.props.results}
         </ul>
       </div>
     // }

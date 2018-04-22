@@ -2,11 +2,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 // import UserInputForm from './UserInputForm.js';
-import fetch from 'node-fetch';
 import SearchForm from './SearchForm.js';
 import SearchResultList from './SearchResultList.js';
 
-const REDDIT_API_PREFIX = 'http://www.reddit.com/r';
+const REDDIT_API_PREFIX = 'http://www.reddit.com/r/';
 
 class App extends React.Component {
   constructor(props) {
@@ -26,11 +25,12 @@ class App extends React.Component {
 
   handleSubmit(query) {
     console.log('q:', query);
-    fetch(`${REDDIT_API_PREFIX}/${searchStr}.json?limit=${limit}`)
+    fetch(`${REDDIT_API_PREFIX}` + query.userInput + '.json?limit='  + query.limit)
     .then(res => {
-      this.state.error = '';
+      this.setState({error: false});
       return res.json();
     }).then(json => {
+      console.log('json', json)
       this.setState({
         results: json.data.children.map(item => {
           return <li key={item.data.id}>
@@ -42,7 +42,7 @@ class App extends React.Component {
       })
     })
     .catch(err => {
-      this.setState({error: 'error', results: []});
+      this.setState({error: true, results: []});
     })
   }
 

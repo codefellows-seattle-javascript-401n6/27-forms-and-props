@@ -1,16 +1,21 @@
-// const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const config = {
   mode: 'development',
-  entry: './src/main.js',
+  devtool: 'source-map', 
+  entry: `${__dirname}/src/main.jsx`,
+  output: {
+    path: `${__dirname}/dist`,
+    filename: 'bundle-[hash].js',
+  },
   module: {
     rules: [
-      {test: /\.js$/, loader: 'babel-loader'},
+      {test: /\.(js$|jsx$)/, loader: 'babel-loader', exclude: /node_modules/},
       {test: /\.css$/, loader: ['style-loader', 'css-loader']},
     ]
   },
-  // plugins: [
-  //   new HtmlWebpackPlugin()
-  // ],
+  plugins: [
+    new HtmlWebpackPlugin({template: `${__dirname}/index.html`})
+  ],
 };
 
 module.exports = config;
