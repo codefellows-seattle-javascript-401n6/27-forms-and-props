@@ -8,18 +8,24 @@ class App extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            title: 'Reddit Subreddit Search Engine',
-            results: ['Basketball', 'Baseball', 'Football']
+            title: 'Subreddit Search Engine',
+            results: [],
+            limit: 100
         }
+        this.performSearch = this.performSearch.bind(this);
     }
 
-    performSearch(query) {
-        if(query === 'bjj') {
-            this.setState({results: ['Jiu-jitsu', 'Brazilian Jiu-jitsu', 'Artem Lobov']})
-        } else {
-            this.setState({results: ['Not found!']});
-        }
+    performSearch(query, limit) {
+        console.log('Query: ', query)
+        console.log('Limit ', limit)
+        let url = `https://www.reddit.com/r${query}.json?limit=${limit}`;
+        fetch(url)
+        .then(res => {
+            console.log('res: ', res);
+            return res.json();
+        })
     }
+    
     render() {
         return (
         <div>
