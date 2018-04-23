@@ -1,0 +1,17 @@
+:root {
+  --error-color: red;
+  --normal-border: black;
+  background-color: cornflowerblue;
+}
+
+h2 {
+  font-size: medium;
+  font-weight: normal;
+  margin-bottom: 1px;
+  color: #0000ff;
+  outline: none;
+    margin-right: .4em;
+    padding: 0px;
+    overflow: hidden;
+
+}
