@@ -10,12 +10,23 @@ class App extends React.Component {
       title: 'Movie Search',
       results:["Rushmore","Royal Tenebaums","Isle of Dogs"]
     }
+    this.performSearch = this.performSearch.bind(this);
+  }
+
+    performSearch(query) {
+     console.log('app perform Search query', query); 
+    if(query === 'ttt'){
+      this.setState({results: ["Kill Bill", "Kill Bill 2"]})
+    }else{
+      this.setState({results: []});
+    }
+  
   }
 
   render() {
     return <div>
       <h1>{this.state.title}</h1>
-      <SearchForm />
+      <SearchForm search={this.performSearch} />
       <SearchResults results={this.state.results}/>
       </div>
   }
