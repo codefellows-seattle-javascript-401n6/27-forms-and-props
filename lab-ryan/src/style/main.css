@@ -1,0 +1,12 @@
+:root {
+    --error-color: red;
+    --normal-boarder: black;
+}
+
+.error input {
+    border: solid 3px var(--error-color);
+}
+
+.good input {
+    border-color: solid 3px var(--normal-boarder);
+}
