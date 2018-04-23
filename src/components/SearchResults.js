@@ -7,18 +7,21 @@ class SearchResults extends React.Component {
     this.state = {
      
     }
- 
+   
   }
 
- 
+ listMovies() {
+  return this.props.results.map((result,i) => {
+    return <li key={i}>{result}</li>
+  });
+ }
 
  
   render() {
     return <div>
+      <p>Found{this.props.results.length} Movies</p>
         <ul>
-          <li>Movie 1</li>
-          <li>Movie 2</li>
-          <li>Movie 3</li>
+        {this.listMovies()}
         </ul>
       </div>
   }
