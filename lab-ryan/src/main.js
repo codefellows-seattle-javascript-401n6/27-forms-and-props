@@ -28,6 +28,7 @@ class App extends React.Component {
         .catch(err => {
             console.log('no results', err);
             this.state({
+                title: 'No Results. Try new serarch.',
                 topics: [],
                 formClass: 'error'
             });
@@ -38,7 +39,7 @@ class App extends React.Component {
     render() {
         return <div>
             <h1>{this.state.title}</h1>
-            <SearchForm search={this.runSearch} errorDisplay={this.state.formClass}/>
+            <SearchForm search={this.runSearch} />
             <SearchResults topics={this.state.topics}/>
             </div>
     }

@@ -8,23 +8,23 @@ class SearchForm extends React.Component {
             userLimit: null,
         }
         this.handleSubmit = this.handleSubmit.bind(this);
-        // this.updateInput = this.updateInput.bind(this);
-        // this.updateValue = this.updateValue.bind(this);
+        this.updateInput = this.updateInput.bind(this);
+        this.updateValue = this.updateValue.bind(this);
     }
 
-    // updateInput(event) {
-    //     let input = event.target.value;
-    //     this.setState({
-    //         userInput: input
-    //     });
-    // }
+    updateInput(event) {
+        let input = event.target.value;
+        this.setState({
+            userInput: input
+        });
+    }
 
-    // updateValue(event) {
-    //     let input = parsInt(event.target.value);
-    //     this.setState({
-    //         userMaxInput: input
-    //     });
-    // }
+    updateValue(event) {
+        let input = parsInt(event.target.value);
+        this.setState({
+            userMaxInput: input
+        });
+    }
 
     handleSubmit(event) {
         event.preventDefault();
