@@ -2,6 +2,8 @@
 
 ## Created by Ryan Johnson
 
+## Contributors Amber Kim, Alica Lycan, Trevor Dobson
+
 ## Project Descriptsion
 This application uses React to simulate Reddit functionality by searching content, using Forms, Props, Fetch and Lifting state from other components into the root of the application.
 

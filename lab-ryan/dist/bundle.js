@@ -19924,10 +19924,10 @@ var App = function (_React$Component) {
                 return results.json();
             }).then(function (results) {
                 _this2.setState({ topics: results.data.children });
-            }).catch(function (err) {
+            }).catch(function () {
                 console.log('no results', err);
                 _this2.state({
-                    title: 'No Results. Try new serarch.',
+                    title: '',
                     topics: [],
                     formClass: 'error'
                 });

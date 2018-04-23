@@ -25,10 +25,10 @@ class App extends React.Component {
         .then(results => {
             this.setState({topics: results.data.children})
         })
-        .catch(err => {
+        .catch(() => {
             console.log('no results', err);
             this.state({
-                title: 'No Results. Try new serarch.',
+                title: '',
                 topics: [],
                 formClass: 'error'
             });
