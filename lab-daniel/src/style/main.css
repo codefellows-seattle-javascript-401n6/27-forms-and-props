@@ -1,0 +1,40 @@
+body {
+    background-color: whitesmoke;
+}
+h1{
+    padding-top: 1.5em;
+    text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif
+}
+.form{
+    text-align: center;
+}
+#searchform {
+    width: 30em;
+    height: 2.5em;
+}
+#limitform {
+    width: 4em;
+    height: 2.5em;
+}
+button {
+    margin-left: 1.5em;
+    height: 3em;
+    width: 10em;
+}
+p{
+    text-align: center;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 2em;
+}
+a {
+    text-decoration: none; 
+    color: blue;
+    padding: 4em;
+}
+ul {
+    text-decoration: none;
+    list-style-type: decimal;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    padding-left: 10em;
+}
