@@ -3,6 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import SearchForm from './components/SearchForm';
 import SearchResultList from './components/SearchResultList';
+import './style/main.css'
 
 class App extends React.Component {
     constructor(props){

@@ -22,12 +22,14 @@ class SearchForm extends React.Component {
 
     render() {
         return (
-            <form onSubmit={this.handleSubmit}>
-                <input type="text" 
+            <form className="form" onSubmit={this.handleSubmit}>
+                <input id="searchform"
+                    type="text" 
                     name="search"
                     onChange={this.updateInput} 
                     placeholder="Search here..." /> 
-                <input type="number" 
+                <input id="limitform"
+                    type="number" 
                     name="limit"
                     min="1"
                     max="100"
