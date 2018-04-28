@@ -14,7 +14,7 @@ class SearchResultList extends React.Component {
     render() {
         return (
             <div>
-                <p>Results: {this.props.topics}</p>
+                <p>Results: {this.props.topics.length}</p>
                 <ul>{this.results}</ul>
             </div>
         )

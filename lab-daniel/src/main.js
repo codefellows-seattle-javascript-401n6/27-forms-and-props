@@ -9,8 +9,7 @@ class App extends React.Component {
         super(props);
         this.state = {
             title: 'Subreddit Search Engine',
-            results: [],
-            limit: 100
+            topics: [],
         }
         this.performSearch = this.performSearch.bind(this);
     }
@@ -18,13 +17,13 @@ class App extends React.Component {
     performSearch(query, limit) {
         console.log('Query: ', query)
         console.log('Limit ', limit)
-        fetch(`http://www.reddit.com/r/${SearchForm}.json?limit=${SearchResultList}`)
+        fetch(`https://www.reddit.com/r/${query}.json?limit=${limit}`)
         .then(res => {
             console.log('results : ', res);
             return res.json();
         })
         .then(res => {
-            this.setState({topics: results.data.children})
+            this.setState({topics: res.data.children})
         })
         .catch(err => {
             console.log('Error: ', err)
