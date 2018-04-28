@@ -7,7 +7,7 @@ class SearchResultList extends React.Component {
     
     results(){
         return this.props.topics.map((results, i) => {
-            return <a href={result.data.url} target="_blank"><li key={i}>{result.data.title}</li></a>
+            return <a href={results.data.url} target="_blank"><li key={i}>{results.data.title}</li></a>
         })
     }
 
@@ -15,7 +15,7 @@ class SearchResultList extends React.Component {
         return (
             <div>
                 <p>Results: {this.props.topics.length}</p>
-                <ul>{this.results}</ul>
+                <ul>{this.results()}</ul>
             </div>
         )
     }
