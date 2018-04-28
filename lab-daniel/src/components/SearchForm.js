@@ -17,16 +17,21 @@ class SearchForm extends React.Component {
 
     handleSubmit(e){
         e.preventDefault();
-        console.log('target value: ', this.state.userInput);
+        this.props.search(e.target.search.value, e.target.limit.value)
     }
 
     render() {
         return (
             <form onSubmit={this.handleSubmit}>
                 <input type="text" 
+                    name="search"
                     onChange={this.updateInput} 
-                    value={this.state.userInput} 
                     placeholder="Search here..." /> 
+                <input type="number" 
+                    name="limit"
+                    min="1"
+                    max="100"
+                    placeholder="1-100" />
                 <button>Search</button>
             </form>
         )

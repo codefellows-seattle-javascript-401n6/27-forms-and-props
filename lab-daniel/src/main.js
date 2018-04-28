@@ -18,11 +18,16 @@ class App extends React.Component {
     performSearch(query, limit) {
         console.log('Query: ', query)
         console.log('Limit ', limit)
-        let url = `https://www.reddit.com/r${query}.json?limit=${limit}`;
-        fetch(url)
+        fetch(`http://www.reddit.com/r/${SearchForm}.json?limit=${SearchResultList}`)
         .then(res => {
-            console.log('res: ', res);
+            console.log('results : ', res);
             return res.json();
+        })
+        .then(res => {
+            this.setState({topics: results.data.children})
+        })
+        .catch(err => {
+            console.log('Error: ', err)
         })
     }
     
@@ -30,8 +35,8 @@ class App extends React.Component {
         return (
         <div>
             <h1>{this.state.title}</h1>
-            <SearchForm />
-            <SearchResultList />
+            <SearchForm search={this.performSearch}/>
+            <SearchResultList topics={this.state.topics}/>
         </div>
         )
     }

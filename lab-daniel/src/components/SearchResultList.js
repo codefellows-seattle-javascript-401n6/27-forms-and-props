@@ -4,15 +4,18 @@ class SearchResultList extends React.Component {
     constructor(props){
         super(props);
     }
+    
+    results(){
+        return this.props.topics.map((results, i) => {
+            return <a href={result.data.url} target="_blank"><li key={i}>{result.data.title}</li></a>
+        })
+    }
 
     render() {
         return (
             <div>
-                <ul>
-                    <li>Sport 1</li>
-                    <li>Sport 2</li>
-                    <li>Sport 3</li>
-                </ul>
+                <p>Results: {this.props.topics}</p>
+                <ul>{this.results}</ul>
             </div>
         )
     }
