@@ -1,7 +1,7 @@
-// import '.style/main.scss';
+import './style/main.scss';
 import React from 'react';
 import ReactDOM from 'react-dom';
-// import UserInputForm from './UserInputForm.js';
+import UserInputForm from './UserInputForm.js';
 import SearchForm from './SearchForm.js';
 import SearchResultList from './SearchResultList.js';
 
@@ -57,7 +57,7 @@ class App extends React.Component {
         <h1>{this.state.title}</h1>
         {/* <UserInputForm /> */}
         <SearchForm error={this.state.error} submit={this.handleSubmit} />
-        <div className='errorMessage'>{this.state.errorMessage} </div>
+        <div className='errorMessage'>{this.state.errorMessage}</div>
         <SearchResultList results={this.state.results} />
         {/* hasSearched={this.state.hasSearched} isLoading={this.state.isLoading}  */}
       </div>
