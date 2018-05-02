@@ -1,7 +1,7 @@
-// import '.style/main.scss';
+import './style/main.scss';
 import React from 'react';
 import ReactDOM from 'react-dom';
-// import UserInputForm from './UserInputForm.js';
+import UserInputForm from './UserInputForm.js';
 import SearchForm from './SearchForm.js';
 import SearchResultList from './SearchResultList.js';
 
@@ -15,8 +15,8 @@ class App extends React.Component {
       results: [],
       error: '',
       errorMessage: 'Results not found.',
-      // hasSearched: false,
-      // loading: false
+      hasSearched: false,
+      loading: false
     };
 
     // this.performSearch = this.performSearch.bind(this);
@@ -24,7 +24,10 @@ class App extends React.Component {
   }
 
   handleSubmit(query) {
-    console.log('q:', query);
+    this.setState({
+      hasSearched: true,
+      isLoading: true
+    })
     fetch(`${REDDIT_API_PREFIX}` + query.userInput + '.json?limit='  + query.limit)
     .then(res => {
       this.setState({error: false});
@@ -40,36 +43,21 @@ class App extends React.Component {
           </li>  
         })
       })
+    // this.setState({isLoading: false});
+
     })
     .catch(err => {
       this.setState({error: true, results: []});
+      this.setState({isLoading: false});
     })
-  }
-
-  // performSearch(query) {
-  //   this.setState({
-  //     hasSearched: true,
-  //     isLoading: true
-  //   })
-
-  //   var that = this;
-  //   setTimeout(() => {
-  //     if(query === 'ttt') {
-  //       this.setState({results: ["Kill Bill", "Kill Bill 2"]});
-  //       this.setState({isLoading: false});
-  //     } else {
-  //       this.setState({results: []});
-  //       this.setState({isLoading: false});
-  //     }
-  //   }, 800);
-  // }
+  } 
 
   render() {
     return <div>
         <h1>{this.state.title}</h1>
         {/* <UserInputForm /> */}
         <SearchForm error={this.state.error} submit={this.handleSubmit} />
-        <div className='errorMessage'>{this.state.errorMessage} </div>
+        <div className='errorMessage'>{this.state.errorMessage}</div>
         <SearchResultList results={this.state.results} />
         {/* hasSearched={this.state.hasSearched} isLoading={this.state.isLoading}  */}
       </div>
@@ -77,5 +65,4 @@ class App extends React.Component {
 }
 
 const root = document.getElementById('root');
-// document.body.appendChild(root);
 ReactDOM.render(<App />, root);
