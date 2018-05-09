@@ -1,4 +1,4 @@
-const htmlPlugin = require('html-webpack-plugin');
+const HtmlPlugin = require('html-webpack-plugin');
 
 module.exports = {
   mode: 'development',
@@ -8,11 +8,11 @@ module.exports = {
     path: `${__dirname}/dist`,
     filename: 'bundle-[hash].js' 
   },
-  plugins: [new htmlPlugin({template: `${__dirname}/index.html`})],
+  plugins: [new HtmlPlugin({template: `${__dirname}/index.html`})],
   module: {
-    rule: [
+    rules: [
       {
-        test: /\.jsx?$/, loader: 'bable.loader'
+        test: /\.jsx?$/, loader: 'babel-loader'
       },
       {
         test: /\.(css|scss)$/, loader: ['style-loader', 'css-laoder']
