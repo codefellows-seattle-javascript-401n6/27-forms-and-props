@@ -1,0 +1,7 @@
+body {
+  background-color: cornflowerblue;
+};
+
+.searchError {
+  border: 40px solid red;
+};
