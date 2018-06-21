@@ -1,5 +1,4 @@
 import React from 'react';
-import faker from 'faker';
 
 class SearchForm extends React.Component {
   constructor(props) {
@@ -7,7 +6,7 @@ class SearchForm extends React.Component {
     this.state = {
       userInput: '',
       limit: 100
-    }
+    };
     this.updateInput = this.updateInput.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -24,23 +23,29 @@ class SearchForm extends React.Component {
 
   error() {
     if (this.props.error) {
-      return "myerror";
+      return 'myerror';
     } else {
-      return "";
+      return '';
     }
   }
 
-render() {
-  return <form className={this.error()} onSubmit={this.handleSubmit}>
-      <input type='text' placeholder='userInput' 
-      value={this.state.userInput} 
-      onChange={this.updateInput} />
-      <input type="number" name="limit" 
-      value={this.state.limit} 
-      min="0" max="100" 
-      onChange={this.updateInput} />
+  render() {
+    return <form className={this.error()} onSubmit={this.handleSubmit}>
+      <input 
+        type='text' 
+        name='userInput'
+        placeholder='enter subreddit name' 
+        value={this.state.userInput} 
+        onChange={this.updateInput} 
+      />
+      <input 
+        type="number" 
+        name="limit" 
+        value={this.state.limit} 
+        min="0" max="100" 
+        onChange={this.updateInput} />
       <button type="submit">Search</button>
-    </form>
+    </form>;
   }
 }
 
