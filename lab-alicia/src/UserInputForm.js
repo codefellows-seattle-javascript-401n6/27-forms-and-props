@@ -16,14 +16,14 @@ class UserInputForm extends React.Component {
 
   render() {
     return (
-    <div>
-      <form>
-        <input type='text' onChange={this.onChange} value={this.state.userInput} placeholder='enter text here'>
-        </input>
-      </form>
-      <div>mirrored user input: {this.state.userInput}</div>
-    </div>
-    )
+      <div>
+        <form>
+          <input type='text' onChange={this.onChange} value={this.state.userInput} placeholder='enter text here'>
+          </input>
+        </form>
+        <div>mirrored user input: {this.state.userInput}</div>
+      </div>
+    );
   }
 }
 
